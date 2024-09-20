@@ -93,14 +93,16 @@
                             <table id="buttons-datatables" class="table table-bordered nowrap align-middle" style="width:100%">
                                 <thead>
                                     <tr>
+                                        <th>Sr.No</th>
                                         <th>Name</th>
                                         <th>Initial</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($wards as $ward)
+                                    @foreach ($wards as $index => $ward)
                                         <tr>
+                                            <td>{{ $index + 1 }}</td>
                                             <td>{{ $ward->name }}</td>
                                             <td>{{ $ward->initial }}</td>
                                             <td>

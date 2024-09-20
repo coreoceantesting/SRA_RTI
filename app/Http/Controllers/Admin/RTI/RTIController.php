@@ -1,25 +1,27 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Masters;
+namespace App\Http\Controllers\Admin\RTI;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Masters\StoreDepartmentRequest;
-use App\Http\Requests\Admin\Masters\UpdateDepartmentRequest;
+use App\Http\Requests\Admin\RTI\StoreRtiRequest;
+use App\Http\Requests\Admin\RTI\UpdateRtiRequest;
+use App\Models\Rti;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
-class DepartmentController extends Controller
+class RTIController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $rtis = Rti::join('departments', 'rtis.concerned_department', '=', 'departments.id')->get(['rtis.*','departments.department_name']);
         $departments = Department::latest()->get();
 
-        return view('admin.masters.departments')->with(['departments'=> $departments]);
+        return view('RTI.rtis')->with(['rtis'=> $rtis, 'departments' => $departments]);
     }
 
     /**
@@ -33,20 +35,20 @@ class DepartmentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreDepartmentRequest $request)
+    public function store(StoreRtiRequest $request)
     {
         try
         {
             DB::beginTransaction();
             $input = $request->validated();
-            Department::create($input);
+            Rti::create($input);
             DB::commit();
 
-            return response()->json(['success'=> 'Department created successfully!']);
+            return response()->json(['success'=> 'RTI created successfully!']);
         }
         catch(\Exception $e)
         {
-            return $this->respondWithAjax($e, 'creating', 'Department');
+            return $this->respondWithAjax($e, 'creating', 'RTI');
         }
     }
 
@@ -61,13 +63,13 @@ class DepartmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Department $department)
+    public function edit(Rti $rti)
     {
-        if ($department)
+        if ($rti)
         {
             $response = [
                 'result' => 1,
-                'department' => $department,
+                'rti' => $rti,
             ];
         }
         else
@@ -80,39 +82,39 @@ class DepartmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateDepartmentRequest $request, Department $department)
+    public function update(UpdateRtiRequest $request, Rti $rti)
     {
         try
         {
             DB::beginTransaction();
             $input = $request->validated();
-            $department->update($input);
+            $rti->update($input);
             DB::commit();
 
-            return response()->json(['success'=> 'Department updated successfully!']);
+            return response()->json(['success'=> 'RTI updated successfully!']);
         }
         catch(\Exception $e)
         {
-            return $this->respondWithAjax($e, 'updating', 'Department');
+            return $this->respondWithAjax($e, 'updating', 'RTI');
         }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Department $department)
+    public function destroy(Rti $rti)
     {
         try
         {
             DB::beginTransaction();
-            $department->delete();
+            $rti->delete();
             DB::commit();
 
-            return response()->json(['success'=> 'Department deleted successfully!']);
+            return response()->json(['success'=> 'RTI deleted successfully!']);
         }
         catch(\Exception $e)
         {
-            return $this->respondWithAjax($e, 'deleting', 'Department');
+            return $this->respondWithAjax($e, 'deleting', 'RTI');
         }
     }
 }

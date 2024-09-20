@@ -1,6 +1,6 @@
 <x-admin.layout>
-    <x-slot name="title">Departments</x-slot>
-    <x-slot name="heading">Departments</x-slot>
+    <x-slot name="title">RTI</x-slot>
+    <x-slot name="heading">RTI</x-slot>
     {{-- <x-slot name="subheading">Test</x-slot> --}}
 
 
@@ -12,19 +12,44 @@
                         @csrf
 
                         <div class="card-header">
-                            <h4 class="card-title">Add Department</h4>
+                            <h4 class="card-title">Create RTI</h4>
                         </div>
                         <div class="card-body">
                             <div class="mb-3 row">
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="department_name">Department Name <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="department_name" name="department_name" type="text" placeholder="Enter Department Name">
-                                    <span class="text-danger is-invalid department_name_err"></span>
+                                    <label class="col-form-label" for="applicant_name">Applicant Name <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="applicant_name" name="applicant_name" type="text" placeholder="Enter Applicant Name">
+                                    <span class="text-danger is-invalid applicant_name_err"></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Ward Initial">
-                                    <span class="text-danger is-invalid initial_err"></span>
+                                    <label class="col-form-label" for="received_date">Received Date <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="received_date" name="received_date" type="date">
+                                    <span class="text-danger is-invalid received_date_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="date">Date<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="date" name="date" type="date">
+                                    <span class="text-danger is-invalid date_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="subject">Subject <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="subject" name="subject" type="text" placeholder="Enter subject">
+                                    <span class="text-danger is-invalid subject_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="concerned_department">Concerned Deartment <span class="text-danger">*</span></label>
+                                    <select class="form-control" name="concerned_department" id="concerned_department">
+                                        <option value="">Select Concerned Deartment</option>
+                                        @foreach ($departments as $list)
+                                            <option value="{{ $list->id }}">{{ $list->department_name }}</option>
+                                        @endforeach    
+                                    </select>
+                                    <span class="text-danger is-invalid concerned_department_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="name_of_concerned_officer">Name Of Concerned Officer <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="name_of_concerned_officer" name="name_of_concerned_officer" type="text" placeholder="Enter Name Of Concerned Officer">
+                                    <span class="text-danger is-invalid name_of_concerned_officer_err"></span>
                                 </div>
                             </div>
 
@@ -47,20 +72,45 @@
                     @csrf
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Edit Department</h4>
+                            <h4 class="card-title">Edit RTI</h4>
                         </div>
                         <div class="card-body py-2">
                             <input type="hidden" id="edit_model_id" name="edit_model_id" value="">
                             <div class="mb-3 row">
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="department_name">Department Name <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="department_name" name="department_name" type="text" placeholder="Enter Department Name">
-                                    <span class="text-danger is-invalid department_name_err"></span>
+                                    <label class="col-form-label" for="applicant_name">Applicant Name <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="applicant_name" name="applicant_name" type="text" placeholder="Enter Applicant Name">
+                                    <span class="text-danger is-invalid applicant_name_err"></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="initial">Initial <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="initial" name="initial" type="text" placeholder="Enter Ward Initial">
-                                    <span class="text-danger is-invalid initial_err"></span>
+                                    <label class="col-form-label" for="received_date">Received Date <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="received_date" name="received_date" type="date">
+                                    <span class="text-danger is-invalid received_date_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="date">Date<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="date" name="date" type="date">
+                                    <span class="text-danger is-invalid date_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="subject">Subject <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="subject" name="subject" type="text" placeholder="Enter subject">
+                                    <span class="text-danger is-invalid subject_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="concerned_department">Concerned Deartment <span class="text-danger">*</span></label>
+                                    <select class="form-control" name="concerned_department" id="concerned_department">
+                                        <option value="">Select Concerned Deartment</option>
+                                        @foreach ($departments as $list)
+                                            <option value="{{ $list->id }}">{{ $list->department_name }}</option>
+                                        @endforeach    
+                                    </select>
+                                    <span class="text-danger is-invalid concerned_department_err"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label" for="name_of_concerned_officer">Name Of Concerned Officer <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="name_of_concerned_officer" name="name_of_concerned_officer" type="text" placeholder="Enter Name Of Concerned Officer">
+                                    <span class="text-danger is-invalid name_of_concerned_officer_err"></span>
                                 </div>
                             </div>
 
@@ -82,7 +132,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="">
-                                    <button id="addToTable" class="btn btn-primary">Add <i class="fa fa-plus"></i></button>
+                                    <button id="addToTable" class="btn btn-primary">Create RTI<i class="fa fa-plus"></i></button>
                                     <button id="btnCancel" class="btn btn-danger" style="display:none;">Cancel</button>
                                 </div>
                             </div>
@@ -94,20 +144,30 @@
                                 <thead>
                                     <tr>
                                         <th>Sr.No</th>
-                                        <th>Department Name</th>
-                                        <th>Initial</th>
+                                        <th>Dispatch No</th>
+                                        <th>Applicant Name</th>
+                                        <th>Received Date</th>
+                                        <th>Date</th>
+                                        <th>Subject</th>
+                                        <th>Concerned Department</th>
+                                        <th>Name Of Concerned Officer</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($departments as $index => $department)
+                                    @foreach ($rtis as $index => $rti)
                                         <tr>
                                             <td>{{ $index + 1 }}</td>
-                                            <td>{{ $department->department_name }}</td>
-                                            <td>{{ $department->initial }}</td>
+                                            <td>{{ $rti->id }}</td>
+                                            <td>{{ $rti->applicant_name }}</td>
+                                            <td>{{ $rti->received_date }}</td>
+                                            <td>{{ $rti->date }}</td>
+                                            <td>{{ $rti->subject }}</td>
+                                            <td>{{ $rti->department_name }}</td>
+                                            <td>{{ $rti->name_of_concerned_officer }}</td>
                                             <td>
-                                                <button class="edit-element btn text-secondary px-2 py-1" title="Edit ward" data-id="{{ $department->id }}"><i data-feather="edit"></i></button>
-                                                <button class="btn text-danger rem-element px-2 py-1" title="Delete ward" data-id="{{ $department->id }}"><i data-feather="trash-2"></i> </button>
+                                                <button class="edit-element btn text-secondary px-2 py-1" title="Edit ward" data-id="{{ $rti->id }}"><i data-feather="edit"></i></button>
+                                                <button class="btn text-danger rem-element px-2 py-1" title="Delete ward" data-id="{{ $rti->id }}"><i data-feather="trash-2"></i> </button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -133,7 +193,7 @@
 
         var formdata = new FormData(this);
         $.ajax({
-            url: '{{ route('departments.store') }}',
+            url: '{{ route('rti.store') }}',
             type: 'POST',
             data: formdata,
             contentType: false,
@@ -144,7 +204,7 @@
                 if (!data.error2)
                     swal("Successful!", data.success, "success")
                         .then((action) => {
-                            window.location.href = '{{ route('departments.index') }}';
+                            window.location.href = '{{ route('rti.index') }}';
                         });
                 else
                     swal("Error!", data.error2, "error");
@@ -171,7 +231,7 @@
     $("#buttons-datatables").on("click", ".edit-element", function(e) {
         e.preventDefault();
         var model_id = $(this).attr("data-id");
-        var url = "{{ route('departments.edit', ":model_id") }}";
+        var url = "{{ route('rti.edit', ":model_id") }}";
 
         $.ajax({
             url: url.replace(':model_id', model_id),
@@ -183,9 +243,13 @@
                 editFormBehaviour();
                 if (!data.error)
                 {
-                    $("#editForm input[name='edit_model_id']").val(data.department.id);
-                    $("#editForm input[name='department_name']").val(data.department.department_name);
-                    $("#editForm input[name='initial']").val(data.department.initial);
+                    $("#editForm input[name='edit_model_id']").val(data.rti.id);
+                    $("#editForm input[name='applicant_name']").val(data.rti.applicant_name);
+                    $("#editForm input[name='received_date']").val(data.rti.received_date);
+                    $("#editForm input[name='date']").val(data.rti.date);
+                    $("#editForm input[name='subject']").val(data.rti.subject);
+                    $("#editForm select[name='concerned_department']").val(data.rti.concerned_department);
+                    $("#editForm input[name='name_of_concerned_officer']").val(data.rti.name_of_concerned_officer);
                 }
                 else
                 {
@@ -209,7 +273,7 @@
             var formdata = new FormData(this);
             formdata.append('_method', 'PUT');
             var model_id = $('#edit_model_id').val();
-            var url = "{{ route('departments.update', ":model_id") }}";
+            var url = "{{ route('rti.update', ":model_id") }}";
             //
             $.ajax({
                 url: url.replace(':model_id', model_id),
@@ -223,7 +287,7 @@
                     if (!data.error2)
                         swal("Successful!", data.success, "success")
                             .then((action) => {
-                                window.location.href = '{{ route('departments.index') }}';
+                                window.location.href = '{{ route('rti.index') }}';
                             });
                     else
                         swal("Error!", data.error2, "error");
@@ -251,7 +315,7 @@
     $("#buttons-datatables").on("click", ".rem-element", function(e) {
         e.preventDefault();
         swal({
-            title: "Are you sure to delete this Department?",
+            title: "Are you sure to delete this RTI?",
             // text: "Make sure if you have filled Vendor details before proceeding further",
             icon: "info",
             buttons: ["Cancel", "Confirm"]
@@ -261,7 +325,7 @@
             if (justTransfer)
             {
                 var model_id = $(this).attr("data-id");
-                var url = "{{ route('departments.destroy', ":model_id") }}";
+                var url = "{{ route('rti.destroy', ":model_id") }}";
 
                 $.ajax({
                     url: url.replace(':model_id', model_id),

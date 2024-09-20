@@ -50,6 +50,10 @@
                             <li class="nav-item">
                                 <a href="{{ route('wards.index') }}" class="nav-link" data-key="t-horizontal">Wards</a>
                             </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('departments.index') }}" class="nav-link" data-key="t-horizontal">Departments</a>
+                            </li>
                         </ul>
                     </div>
                 </li>

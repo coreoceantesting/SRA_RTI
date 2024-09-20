@@ -132,7 +132,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="">
-                                    <button id="addToTable" class="btn btn-primary">Create RTI<i class="fa fa-plus"></i></button>
+                                    <button id="addToTable" class="btn btn-primary">Create RTI <i class="fa fa-plus"></i></button>
                                     <button id="btnCancel" class="btn btn-danger" style="display:none;">Cancel</button>
                                 </div>
                             </div>

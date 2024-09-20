@@ -94,23 +94,15 @@
                                 <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
+                                        <th>Initial</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($wards as $ward)
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
+                                            <td>{{ $ward->name }}</td>
+                                            <td>{{ $ward->initial }}</td>
                                             <td>
                                                 <button class="edit-element btn text-secondary px-2 py-1" title="Edit ward" data-id="{{ $ward->id }}"><i data-feather="edit"></i></button>
                                                 <button class="btn text-danger rem-element px-2 py-1" title="Delete ward" data-id="{{ $ward->id }}"><i data-feather="trash-2"></i> </button>

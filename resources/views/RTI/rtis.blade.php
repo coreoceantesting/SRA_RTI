@@ -166,6 +166,12 @@
                                             <td>{{ $rti->department_name }}</td>
                                             <td>{{ $rti->name_of_concerned_officer }}</td>
                                             <td>
+                                                @if ($rti->status == "Pending")
+                                                    <a href="{{ route('first_appeal', $rti->id) }}" class="btn btn-sm btn-primary px-2 py-1" title="First Appeal">1st Appeal</a>              
+                                                @endif
+                                                @if ($rti->status == "First Appeal")
+                                                    <a href="{{ route('second_appeal', $rti->id) }}" class="btn btn-sm btn-info px-2 py-1" title="Second Appeal">2nd Appeal</a>
+                                                @endif
                                                 <button class="edit-element btn text-secondary px-2 py-1" title="Edit ward" data-id="{{ $rti->id }}"><i data-feather="edit"></i></button>
                                                 <button class="btn text-danger rem-element px-2 py-1" title="Delete ward" data-id="{{ $rti->id }}"><i data-feather="trash-2"></i> </button>
                                             </td>

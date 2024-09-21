@@ -5,8 +5,12 @@ namespace App\Http\Controllers\Admin\RTI;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\RTI\StoreRtiRequest;
 use App\Http\Requests\Admin\RTI\UpdateRtiRequest;
+use App\Http\Requests\FirstAppeal\StoreFirstAppealRequest;
+use App\Http\Requests\SecondAppeal\StoreSecondAppealRequest;
 use App\Models\Rti;
 use App\Models\Department;
+use App\Models\FirstAppeal;
+use App\Models\SecondAppeal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -115,6 +119,69 @@ class RTIController extends Controller
         catch(\Exception $e)
         {
             return $this->respondWithAjax($e, 'deleting', 'RTI');
+        }
+    }
+
+    public function first_appeal($id)
+    {
+        $rtis = Rti::findOrFail($id);
+        $departments = Department::latest()->get();
+        return view('RTI.first_appeal')->with(['rtis' => $rtis, 'departments' => $departments]);
+    }
+
+    public function store_first_appeal(StoreFirstAppealRequest $request)
+    {
+        try
+        {
+            DB::beginTransaction();
+            $input = $request->validated();
+            $input['rti_id'] = $request->input('edit_model_id');
+            FirstAppeal::create($input);
+            DB::table('rtis')->where('id', $request->input('edit_model_id'))->update([
+                'status' => "First Appeal"
+            ]);
+            DB::commit();
+
+            return response()->json(['success'=> 'First Appeal Successfully!']);
+        }
+        catch(\Exception $e)
+        {
+            return $this->respondWithAjax($e, 'creating', 'firstAppeal');
+        }
+    }
+
+    public function second_appeal($id)
+    {
+        $rtis = Rti::findOrFail($id);
+        $departments = Department::latest()->get();
+        return view('RTI.second_appeal')->with(['rtis' => $rtis, 'departments' => $departments]);
+    }
+
+    public function store_second_appeal(StoreSecondAppealRequest $request)
+    {
+        try
+        {
+            DB::beginTransaction();
+            $input = $request->validated();
+            $input['rti_id'] = $request->input('edit_model_id');
+
+            if ($request->hasFile('old_document')) {
+                $Doc = $request->file('old_document');
+                $DocPath = $Doc->store('old_document', 'public');
+                $input['old_document'] = $DocPath;
+            }
+
+            SecondAppeal::create($input);
+            DB::table('rtis')->where('id', $request->input('edit_model_id'))->update([
+                'status' => "Second Appeal"
+            ]);
+            DB::commit();
+
+            return response()->json(['success'=> 'Second Appeal Successfully!']);
+        }
+        catch(\Exception $e)
+        {
+            return $this->respondWithAjax($e, 'creating', 'SecondAppeal');
         }
     }
 }

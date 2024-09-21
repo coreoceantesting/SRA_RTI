@@ -49,6 +49,12 @@ Route::middleware(['auth', 'PreventBackHistory', 'firewall.all'])->group(functio
     Route::resource('departments', App\Http\Controllers\Admin\Masters\DepartmentController::class);
     Route::resource('rti', App\Http\Controllers\Admin\RTI\RTIController::class);
 
+    // appeals routes
+    Route::get('first-appeal/{id}', [App\Http\Controllers\Admin\RTI\RTIController::class, 'first_appeal'])->name('first_appeal');
+    Route::post('first-appeal/store', [App\Http\Controllers\Admin\RTI\RTIController::class, 'store_first_appeal'])->name('store_first_appeal');
+    Route::get('second-appeal/{id}', [App\Http\Controllers\Admin\RTI\RTIController::class, 'second_appeal'])->name('second_appeal');
+    Route::post('second-appeal/store', [App\Http\Controllers\Admin\RTI\RTIController::class, 'store_second_appeal'])->name('store_second_appeal');
+
 
 
 

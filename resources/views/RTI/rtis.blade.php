@@ -1,7 +1,6 @@
 <x-admin.layout>
     <x-slot name="title">RTI</x-slot>
     <x-slot name="heading">RTI</x-slot>
-    {{-- <x-slot name="subheading">Test</x-slot> --}}
 
 
         <!-- Add Form -->

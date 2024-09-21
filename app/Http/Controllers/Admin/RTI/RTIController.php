@@ -184,4 +184,16 @@ class RTIController extends Controller
             return $this->respondWithAjax($e, 'creating', 'SecondAppeal');
         }
     }
+
+    public function first_appeal_list()
+    {
+        $lists = FirstAppeal::join('departments', 'first_appeals.concerned_department', '=', 'departments.id')->get(['first_appeals.*','departments.department_name']);
+        return view('RTI.first_appeal_list')->with(['lists' => $lists]);
+    }
+
+    public function second_appeal_list()
+    {
+        $lists = SecondAppeal::latest()->get();
+        return view('RTI.second_appeal_list')->with(['lists' => $lists]);
+    }
 }

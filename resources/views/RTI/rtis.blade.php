@@ -2,7 +2,9 @@
     <x-slot name="title">RTI</x-slot>
     <x-slot name="heading">RTI</x-slot>
 
-
+    <?php
+        $today = date('Y-m-d'); // Format: yyyy-mm-dd
+    ?>
         <!-- Add Form -->
         <div class="row" id="addContainer" style="display:none;">
             <div class="col-sm-12">
@@ -22,7 +24,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="received_date">Received Date <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="received_date" name="received_date" type="date">
+                                    <input class="form-control" id="received_date" name="received_date" max="<?php echo $today; ?>" type="date">
                                     <span class="text-danger is-invalid received_date_err"></span>
                                 </div>
                                 <div class="col-md-4">
@@ -46,7 +48,7 @@
                                     <span class="text-danger is-invalid concerned_department_err"></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="name_of_concerned_officer">Name Of Concerned Officer <span class="text-danger">*</span></label>
+                                    <label class="col-form-label" for="name_of_concerned_officer">Name Of Concerned Officer</label>
                                     <input class="form-control" id="name_of_concerned_officer" name="name_of_concerned_officer" type="text" placeholder="Enter Name Of Concerned Officer">
                                     <span class="text-danger is-invalid name_of_concerned_officer_err"></span>
                                 </div>
@@ -83,7 +85,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="received_date">Received Date <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="received_date" name="received_date" type="date">
+                                    <input class="form-control" id="received_date" name="received_date" max="<?php echo $today; ?>" type="date">
                                     <span class="text-danger is-invalid received_date_err"></span>
                                 </div>
                                 <div class="col-md-4">
@@ -107,7 +109,7 @@
                                     <span class="text-danger is-invalid concerned_department_err"></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="name_of_concerned_officer">Name Of Concerned Officer <span class="text-danger">*</span></label>
+                                    <label class="col-form-label" for="name_of_concerned_officer">Name Of Concerned Officer</label>
                                     <input class="form-control" id="name_of_concerned_officer" name="name_of_concerned_officer" type="text" placeholder="Enter Name Of Concerned Officer">
                                     <span class="text-danger is-invalid name_of_concerned_officer_err"></span>
                                 </div>
@@ -361,3 +363,4 @@
         });
     });
 </script>
+

@@ -22,7 +22,7 @@ class StoreRtiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'applicant_name' => 'required',
+            'applicant_name' => 'required|alpha',
             'received_date' => 'required',
             'date' => 'required',
             'subject' => 'required',

@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="date">Date<span class="text-danger">*</span></label>
-                                    <input class="form-control" id="date" name="date" type="date">
+                                    <input class="form-control" id="date" name="date" value="<?php echo $today; ?>" type="date" readonly>
                                     <span class="text-danger is-invalid date_err"></span>
                                 </div>
                                 <div class="col-md-4">

@@ -34,7 +34,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="subject">Subject <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="subject" name="subject" type="text" placeholder="Enter subject">
+                                    <textarea class="form-control" id="subject" name="subject" cols="30" rows="2" placeholder="Enter subject"></textarea>
+                                    {{-- <input class="form-control" id="subject" name="subject" type="text" placeholder="Enter subject"> --}}
                                     <span class="text-danger is-invalid subject_err"></span>
                                 </div>
                                 <div class="col-md-4">
@@ -95,7 +96,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="subject">Subject <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="subject" name="subject" type="text" placeholder="Enter subject">
+                                    <textarea class="form-control" id="subject" name="subject" cols="30" rows="2" placeholder="Enter subject"></textarea>
+                                    {{-- <input class="form-control" id="subject" name="subject" type="text" placeholder="Enter subject"> --}}
                                     <span class="text-danger is-invalid subject_err"></span>
                                 </div>
                                 <div class="col-md-4">
@@ -163,9 +165,11 @@
                                             <td>{{ $rti->applicant_name }}</td>
                                             <td>{{ $rti->received_date }}</td>
                                             <td>{{ $rti->date }}</td>
-                                            <td>{{ $rti->subject }}</td>
+                                            <td title="{{ $rti->subject }}" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px;">
+                                                {{ Str::limit($rti->subject, 20) }}
+                                            </td>
                                             <td>{{ $rti->department_name }}</td>
-                                            <td>{{ $rti->name_of_concerned_officer }}</td>
+                                            <td>{{ $rti->name_of_concerned_officer ?? 'NA'}}</td>
                                             <td>
                                                 @if ($rti->status == "Pending")
                                                     <a href="{{ route('first_appeal', $rti->id) }}" class="btn btn-sm btn-primary px-2 py-1" title="First Appeal">1st Appeal</a>              
@@ -254,7 +258,7 @@
                     $("#editForm input[name='applicant_name']").val(data.rti.applicant_name);
                     $("#editForm input[name='received_date']").val(data.rti.received_date);
                     $("#editForm input[name='date']").val(data.rti.date);
-                    $("#editForm input[name='subject']").val(data.rti.subject);
+                    $("#editForm textarea[name='subject']").val(data.rti.subject);
                     $("#editForm select[name='concerned_department']").val(data.rti.concerned_department);
                     $("#editForm input[name='name_of_concerned_officer']").val(data.rti.name_of_concerned_officer);
                 }

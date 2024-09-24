@@ -22,7 +22,7 @@ class UpdateRtiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'applicant_name' => 'required|alpha',
+            'applicant_name' => 'required|regex:/^[\p{L} ]+$/u',
             'received_date' => 'required',
             'date' => 'required',
             'subject' => 'required',

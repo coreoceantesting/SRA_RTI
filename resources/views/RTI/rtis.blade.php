@@ -177,8 +177,10 @@
                                                 @if ($rti->status == "First Appeal")
                                                     <a href="{{ route('second_appeal', $rti->id) }}" class="btn btn-sm btn-info px-2 py-1" title="Second Appeal">2nd Appeal</a>
                                                 @endif
-                                                <button class="edit-element btn text-secondary px-2 py-1" title="Edit ward" data-id="{{ $rti->id }}"><i data-feather="edit"></i></button>
-                                                <button class="btn text-danger rem-element px-2 py-1" title="Delete ward" data-id="{{ $rti->id }}"><i data-feather="trash-2"></i> </button>
+                                                @if ($rti->status == "Pending")
+                                                <button class="edit-element btn text-secondary px-2 py-1" title="Edit RTI" data-id="{{ $rti->id }}"><i data-feather="edit"></i></button>
+                                                @endif
+                                                <button class="btn text-danger rem-element px-2 py-1" title="Delete RTI" data-id="{{ $rti->id }}"><i data-feather="trash-2"></i> </button>      
                                             </td>
                                         </tr>
                                     @endforeach

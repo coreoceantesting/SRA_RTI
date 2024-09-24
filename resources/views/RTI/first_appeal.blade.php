@@ -2,6 +2,9 @@
     <x-slot name="title">First Appeal</x-slot>
     <x-slot name="heading">First Appeal</x-slot>
 
+        <?php
+            $today = date('Y-m-d'); // Format: yyyy-mm-dd
+        ?>
         {{-- Add Form --}}
         <div class="row" id="editContainer">
             <div class="col">
@@ -16,17 +19,17 @@
                             <div class="mb-3 row">
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="applicant_name">Applicant Name <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="applicant_name" name="applicant_name" type="text" placeholder="Enter Applicant Name">
+                                    <input class="form-control" id="applicant_name" name="applicant_name" type="text" placeholder="Enter Applicant Name" value="{{ $rtis->applicant_name }}" readonly> 
                                     <span class="text-danger is-invalid applicant_name_err"></span>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="received_date">Received Date <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="received_date" name="received_date" type="date">
+                                    <input class="form-control" id="received_date" name="received_date" type="date" max="<?php echo $today; ?>">
                                     <span class="text-danger is-invalid received_date_err"></span>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="date">Date<span class="text-danger">*</span></label>
-                                    <input class="form-control" id="date" name="date" type="date">
+                                    <input class="form-control" id="date" name="date" value="<?php echo $today; ?>" type="date" readonly>
                                     <span class="text-danger is-invalid date_err"></span>
                                 </div>
                                 <div class="col-md-4">

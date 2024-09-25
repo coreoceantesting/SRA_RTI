@@ -33,7 +33,9 @@ class RTIController extends Controller
      */
     public function create()
     {
-        //
+        $departments = Department::latest()->get();
+
+        return view('RTI.createRti')->with(['departments' => $departments]);
     }
 
     /**
@@ -67,20 +69,12 @@ class RTIController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Rti $rti)
+    public function edit($id)
     {
-        if ($rti)
-        {
-            $response = [
-                'result' => 1,
-                'rti' => $rti,
-            ];
-        }
-        else
-        {
-            $response = ['result' => 0];
-        }
-        return $response;
+        $rti = Rti::findOrFail($id);
+        $departments = Department::latest()->get();
+
+        return view('RTI.editRti')->with(['rti' => $rti ,'departments' => $departments]);
     }
 
     /**

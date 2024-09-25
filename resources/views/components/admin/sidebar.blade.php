@@ -83,9 +83,16 @@
                 @endcan
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('rti.index') }}" >
+                    <a class="nav-link menu-link" href="{{ route('rti.create') }}" >
                         <i class="ri-file-edit-line"></i>
                         <span data-key="t-dashboards">Create RTI</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('rti.index') }}" >
+                        <i class="ri-list-check"></i>
+                        <span data-key="t-dashboards">RTI List</span>
                     </a>
                 </li>
 

@@ -22,7 +22,14 @@ class RTIController extends Controller
      */
     public function index()
     {
-        $rtis = Rti::join('departments', 'rtis.concerned_department', '=', 'departments.id')->get(['rtis.*','departments.department_name']);
+        if(auth()->user()->roles->pluck('name')[0] === "Department")
+        {
+            $rtis = Rti::join('departments', 'rtis.concerned_department', '=', 'departments.id')
+            ->where('rtis.concerned_department', auth()->user()->department)
+            ->get(['rtis.*','departments.department_name']);
+        }else{
+            $rtis = Rti::join('departments', 'rtis.concerned_department', '=', 'departments.id')->get(['rtis.*','departments.department_name']);
+        }
         $departments = Department::latest()->get();
 
         return view('RTI.rtis')->with(['rtis'=> $rtis, 'departments' => $departments]);
@@ -181,7 +188,15 @@ class RTIController extends Controller
 
     public function first_appeal_list()
     {
-        $lists = FirstAppeal::join('departments', 'first_appeals.concerned_department', '=', 'departments.id')->get(['first_appeals.*','departments.department_name']);
+        if(auth()->user()->roles->pluck('name')[0] === "Department")
+        {
+            $lists = FirstAppeal::join('departments', 'first_appeals.concerned_department', '=', 'departments.id')
+                    ->where('first_appeals.concerned_department', auth()->user()->department)
+                    ->get(['first_appeals.*','departments.department_name']);
+        }else{
+            $lists = FirstAppeal::join('departments', 'first_appeals.concerned_department', '=', 'departments.id')->get(['first_appeals.*','departments.department_name']);
+
+        }
         return view('RTI.first_appeal_list')->with(['lists' => $lists]);
     }
 

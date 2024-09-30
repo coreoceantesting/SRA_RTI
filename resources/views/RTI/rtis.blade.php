@@ -41,9 +41,9 @@
                                             @if ($rti->status == "Pending")
                                                 <a href="{{ route('first_appeal', $rti->id) }}" class="btn btn-sm btn-primary px-2 py-1" title="First Appeal">1st Appeal</a>              
                                             @endif
-                                            @if ($rti->status == "First Appeal")
+                                            {{-- @if ($rti->status == "First Appeal")
                                                 <a href="{{ route('second_appeal', $rti->id) }}" class="btn btn-sm btn-info px-2 py-1" title="Second Appeal">2nd Appeal</a>
-                                            @endif
+                                            @endif --}}
                                             @if ($rti->status == "Pending")
                                             <a href="{{ route('rti.edit', $rti->id) }}" class="edit-element btn text-secondary px-2 py-1" title="Edit RTI" data-id="{{ $rti->id }}"><i data-feather="edit"></i></a>
                                             @endif

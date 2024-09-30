@@ -103,12 +103,12 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('second_appeal_list') }}" >
                         <i class="ri-list-check"></i>
                         <span data-key="t-dashboards">Second Appeal List</span>
                     </a>
-                </li>
+                </li> --}}
 
             </ul>
         </div>

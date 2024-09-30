@@ -23,6 +23,11 @@
                                 <span class="text-danger is-invalid applicant_name_err"></span>
                             </div>
                             <div class="col-md-4">
+                                <label class="col-form-label" for="mobile_no">Mobile No <span class="text-danger">*</span></label>
+                                <input class="form-control" id="mobile_no" name="mobile_no" type="number" placeholder="Enter Mobile No" value="{{ $rti->mobile_no }}">
+                                <span class="text-danger is-invalid mobile_no_err"></span>
+                            </div>
+                            <div class="col-md-4">
                                 <label class="col-form-label" for="received_date">Received Date <span class="text-danger">*</span></label>
                                 <input class="form-control" id="received_date" name="received_date" max="<?php echo $today; ?>" type="date" value="{{ $rti->received_date }}">
                                 <span class="text-danger is-invalid received_date_err"></span>

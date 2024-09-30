@@ -6,16 +6,6 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="">
-                                <button id="addToTable" class="btn btn-primary">Create RTI <i class="fa fa-plus"></i></button>
-                                <button id="btnCancel" class="btn btn-danger" style="display:none;">Cancel</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table id="buttons-datatables" class="table table-bordered nowrap align-middle" style="width:100%">
@@ -24,6 +14,7 @@
                                     <th>Sr.No</th>
                                     <th>Dispatch No</th>
                                     <th>Applicant Name</th>
+                                    <th>Mobile No</th>
                                     <th>Received Date</th>
                                     <th>Date</th>
                                     <th>Subject</th>
@@ -38,6 +29,7 @@
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $rti->id }}</td>
                                         <td>{{ $rti->applicant_name }}</td>
+                                        <td>{{ $rti->mobile_no }}</td>
                                         <td>{{ $rti->received_date }}</td>
                                         <td>{{ $rti->date }}</td>
                                         <td title="{{ $rti->subject }}" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px;">

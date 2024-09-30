@@ -24,6 +24,7 @@ class StoreFirstAppealRequest extends FormRequest
         return [
             'applicant_name' => 'required',
             'received_date' => 'required',
+            'mobile_no' => 'required|digits:10',
             'date' => 'required',
             'subject' => 'required',
             'concerned_department' => 'required',

@@ -16,6 +16,7 @@ class Rti extends Model
         'unique_applicant_no',
         'applicant_name',
         'received_date',
+        'mobile_no',
         'date',
         'subject',
         'concerned_department',

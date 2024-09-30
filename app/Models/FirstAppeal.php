@@ -16,6 +16,7 @@ class FirstAppeal extends Model
         'unique_applicant_no',
         'rti_id',
         'applicant_name',
+        'mobile_no',
         'received_date',
         'date',
         'subject',

@@ -3,7 +3,7 @@
     <x-slot name="heading">First Appeal</x-slot>
 
         <?php
-            $today = date('Y-m-d'); // Format: yyyy-mm-dd
+            $today = date('Y-m-d');
         ?>
         {{-- Add Form --}}
         <div class="row" id="editContainer">
@@ -23,8 +23,13 @@
                                     <span class="text-danger is-invalid applicant_name_err"></span>
                                 </div>
                                 <div class="col-md-4">
+                                    <label class="col-form-label" for="mobile_no">Mobile No <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="mobile_no" name="mobile_no" type="number" placeholder="Enter Mobile No" value="{{ $rtis->mobile_no }}" readonly>
+                                    <span class="text-danger is-invalid mobile_no_err"></span>
+                                </div>
+                                <div class="col-md-4">
                                     <label class="col-form-label" for="received_date">Received Date <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="received_date" name="received_date" type="date" max="<?php echo $today; ?>">
+                                    <input class="form-control" id="received_date" name="received_date" type="date" value="{{ $rtis->received_date }}">
                                     <span class="text-danger is-invalid received_date_err"></span>
                                 </div>
                                 <div class="col-md-4">
@@ -34,22 +39,22 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="subject">Subject <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="subject" name="subject" type="text" placeholder="Enter subject">
+                                    <input class="form-control" id="subject" name="subject" type="text" placeholder="Enter subject" value="{{ $rtis->subject }}" readonly>
                                     <span class="text-danger is-invalid subject_err"></span>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="concerned_department">Concerned Deartment <span class="text-danger">*</span></label>
-                                    <select class="form-control" name="concerned_department" id="concerned_department">
+                                    <select class="form-control" name="concerned_department" id="concerned_department" readonly>
                                         <option value="">Select Concerned Deartment</option>
                                         @foreach ($departments as $list)
-                                            <option value="{{ $list->id }}">{{ $list->department_name }}</option>
+                                            <option value="{{ $list->id }}" @if($list->id == $rtis->concerned_department) selected @endif>{{ $list->department_name }}</option>
                                         @endforeach    
                                     </select>
                                     <span class="text-danger is-invalid concerned_department_err"></span>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="name_of_concerned_officer">Name Of Concerned Officer <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="name_of_concerned_officer" name="name_of_concerned_officer" type="text" placeholder="Enter Name Of Concerned Officer">
+                                    <input class="form-control" id="name_of_concerned_officer" name="name_of_concerned_officer" type="text" placeholder="Enter Name Of Concerned Officer" value="{{ $rtis->name_of_concerned_officer }}" readonly>
                                     <span class="text-danger is-invalid name_of_concerned_officer_err"></span>
                                 </div>
                             </div>

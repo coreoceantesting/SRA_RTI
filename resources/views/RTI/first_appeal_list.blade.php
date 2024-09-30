@@ -13,6 +13,7 @@
                                     <th>Sr.No</th>
                                     <th>Dispatch No</th>
                                     <th>Applicant Name</th>
+                                    <th>Mobile No</th>
                                     <th>Received Date</th>
                                     <th>Date</th>
                                     <th>Subject</th>
@@ -26,6 +27,7 @@
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $list->id }}</td>
                                         <td>{{ $list->applicant_name }}</td>
+                                        <td>{{ $list->mobile_no }}</td>
                                         <td>{{ $list->received_date }}</td>
                                         <td>{{ $list->date }}</td>
                                         <td>{{ $list->subject }}</td>

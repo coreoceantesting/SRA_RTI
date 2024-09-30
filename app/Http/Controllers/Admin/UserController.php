@@ -24,10 +24,17 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::whereNot('id', Auth::user()->id)->latest()->get();
-        $roles = Role::orderBy('id', 'DESC')->whereNot('name', 'like', '%super%')->get();
+        $users = User::whereNot('users.id', Auth::user()->id)
+                // ->whereNull('users.deleted_by')
+                ->leftjoin('departments', 'users.department', '=', 'departments.id')
+                ->select('users.*', 'departments.department_name as department_name')
+                ->orderBy('users.id', 'desc')
+                ->get();
 
-        return view('admin.users')->with(['users'=> $users, 'roles'=> $roles]);
+        $roles = Role::orderBy('id', 'DESC')->whereNot('name', 'like', '%super%')->get();
+        $departments = Department::latest()->get();
+
+        return view('admin.users')->with(['users'=> $users, 'roles'=> $roles, 'departments' => $departments]);
     }
 
     /**

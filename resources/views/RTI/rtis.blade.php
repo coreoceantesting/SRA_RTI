@@ -47,7 +47,10 @@
                                             @if ($rti->status == "Pending")
                                             <a href="{{ route('rti.edit', $rti->id) }}" class="edit-element btn text-secondary px-2 py-1" title="Edit RTI" data-id="{{ $rti->id }}"><i data-feather="edit"></i></a>
                                             @endif
-                                            <button class="btn text-danger rem-element px-2 py-1" title="Delete RTI" data-id="{{ $rti->id }}"><i data-feather="trash-2"></i> </button>      
+                                            <button class="btn btn-primary btn-sm approve-element px-2 py-1" title="Delete RTI" data-id="{{ $rti->id }}">Approve</button>
+                                            <button class="btn btn-info btn-sm transfer-element px-2 py-1" title="Delete RTI" data-id="{{ $rti->id }}">Transfer</button>
+                                            <button class="btn btn-warning rem-element px-2 py-1" title="Delete RTI" data-id="{{ $rti->id }}"><i data-feather="trash-2"></i> </button>
+
                                         </td>
                                     </tr>
                                 @endforeach

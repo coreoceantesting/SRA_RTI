@@ -39,24 +39,25 @@
                     </a>
                 </li>
 
+                @canany(['Masters.all'])
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                            <i class="ri-layout-3-line"></i>
+                            <span data-key="t-layouts">Masters</span>
+                        </a>
+                        <div class="collapse menu-dropdown" id="sidebarLayouts">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="{{ route('wards.index') }}" class="nav-link" data-key="t-horizontal">Wards</a>
+                                </li>
 
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
-                        <i class="ri-layout-3-line"></i>
-                        <span data-key="t-layouts">Masters</span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="sidebarLayouts">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="{{ route('wards.index') }}" class="nav-link" data-key="t-horizontal">Wards</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="{{ route('departments.index') }}" class="nav-link" data-key="t-horizontal">Departments</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('departments.index') }}" class="nav-link" data-key="t-horizontal">Departments</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                @endcan
 
 
                 @canany(['users.view', 'roles.view'])
@@ -82,26 +83,32 @@
                 </li>
                 @endcan
 
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('rti.create') }}" >
-                        <i class="ri-file-edit-line"></i>
-                        <span data-key="t-dashboards">Create RTI</span>
-                    </a>
-                </li>
+                @canany(['RTI.create'])
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="{{ route('rti.create') }}" >
+                            <i class="ri-file-edit-line"></i>
+                            <span data-key="t-dashboards">Create RTI</span>
+                        </a>
+                    </li>
+                @endcan
 
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('rti.index') }}" >
-                        <i class="ri-list-check"></i>
-                        <span data-key="t-dashboards">RTI List</span>
-                    </a>
-                </li>
+                @canany(['RTI.list'])
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="{{ route('rti.index') }}" >
+                            <i class="ri-list-check"></i>
+                            <span data-key="t-dashboards">RTI List</span>
+                        </a>
+                    </li>
+                @endcan
 
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('first_appeal_list') }}" >
-                        <i class="ri-list-check"></i>
-                        <span data-key="t-dashboards">First Appeal List</span>
-                    </a>
-                </li>
+                @can(['RTI.firstAppealList'])
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="{{ route('first_appeal_list') }}" >
+                            <i class="ri-list-check"></i>
+                            <span data-key="t-dashboards">First Appeal List</span>
+                        </a>
+                    </li>   
+                @endcan
 
                 {{-- <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('second_appeal_list') }}" >

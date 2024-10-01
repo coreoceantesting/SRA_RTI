@@ -28,7 +28,7 @@
                                 @foreach ($rtis as $index => $rti)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ $rti->id }}</td>
+                                        <td>{{ $rti->dispatch_no }}</td>
                                         <td>{{ $rti->applicant_name }}</td>
                                         <td>{{ $rti->mobile_no }}</td>
                                         <td>{{ $rti->received_date }}</td>
@@ -40,24 +40,40 @@
                                         <td>{{ $rti->name_of_concerned_officer ?? 'NA'}}</td>
                                         <td>{{ $rti->note ?? 'NA'}}</td>
                                         <td>
-                                            @if ($rti->status == "Pending")
-                                                <a href="{{ route('first_appeal', $rti->id) }}" class="btn btn-sm btn-primary px-2 py-1" title="First Appeal">1st Appeal</a>              
-                                            @endif
+                                            @can(['RTI.firstAppeal'])    
+                                                @if ($rti->status == "Pending")
+                                                    <a href="{{ route('first_appeal', $rti->id) }}" class="btn btn-sm btn-primary px-2 py-1" title="First Appeal">1st Appeal</a>              
+                                                @endif
+                                            @endcan
                                             {{-- @if ($rti->status == "First Appeal")
                                                 <a href="{{ route('second_appeal', $rti->id) }}" class="btn btn-sm btn-info px-2 py-1" title="Second Appeal">2nd Appeal</a>
                                             @endif --}}
-                                            @if ($rti->status == "Pending")
-                                            <a href="{{ route('rti.edit', $rti->id) }}" class="edit-element btn text-secondary px-2 py-1" title="Edit RTI" data-id="{{ $rti->id }}"><i data-feather="edit"></i></a>
-                                            @endif
-                                            @if ($rti->approval_status == "Pending")                           
-                                                <button class="btn btn-primary btn-sm approve-element px-2 py-1" title="Approve RTI" data-id="{{ $rti->id }}">Approve</button>
-                                                <button class="btn btn-info btn-sm transfer-element px-2 py-1" title="Transfer RTI" data-id="{{ $rti->id }}">Transfer</button>
-                                            @endif
-                                            @if ($rti->approval_status == "Approved" && empty($rti->note))
-                                                <button class="btn btn-secondary btn-sm note px-2 py-1" title="Note" data-id="{{ $rti->id }}">Note</button>
-                                            @endif
-                                            <button class="btn btn-dark btn-sm transfer-details px-2 py-1" title="Transfer RTI Details" data-id="{{ $rti->id }}">Transfer Details</button>
-                                            <button class="btn btn-warning rem-element px-2 py-1" title="Delete RTI" data-id="{{ $rti->id }}"><i data-feather="trash-2"></i> </button>
+                                            @can(['RTI.edit'])
+                                                @if ($rti->status == "Pending")
+                                                <a href="{{ route('rti.edit', $rti->id) }}" class="edit-element btn text-secondary px-2 py-1" title="Edit RTI" data-id="{{ $rti->id }}"><i data-feather="edit"></i></a>
+                                                @endif
+                                            @endcan
+
+                                            @can(['RTI.approval'])
+                                                @if ($rti->approval_status == "Pending")                           
+                                                    <button class="btn btn-success btn-sm approve-element px-2 py-1" title="Approve RTI" data-id="{{ $rti->id }}">Approve</button>
+                                                    <button class="btn btn-info btn-sm transfer-element px-2 py-1" title="Transfer RTI" data-id="{{ $rti->id }}">Transfer</button>
+                                                @endif
+                                            @endcan
+
+                                            @can(['RTI.note'])
+                                                @if ($rti->approval_status == "Approved" && empty($rti->note))
+                                                    <button class="btn btn-secondary btn-sm note px-2 py-1" title="Note" data-id="{{ $rti->id }}">Note</button>
+                                                @endif
+                                            @endcan
+
+                                            @can(['RTI.transferDetails'])
+                                                <button class="btn btn-dark btn-sm transfer-details px-2 py-1" title="Transfer RTI Details" data-id="{{ $rti->id }}">Transfer Details</button>    
+                                            @endcan
+
+                                            @can(['RTI.delete'])    
+                                                <button class="btn btn-warning rem-element px-2 py-1" title="Delete RTI" data-id="{{ $rti->id }}"><i data-feather="trash-2"></i> </button>
+                                            @endcan
 
                                         </td>
                                     </tr>

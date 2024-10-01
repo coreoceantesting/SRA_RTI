@@ -94,6 +94,56 @@ class PermissionTableSeeder extends Seeder
                 'name' => 'wards.delete',
                 'group' => 'wards',
             ],
+            [
+                'id' => 17,
+                'name' => 'RTI.create',
+                'group' => 'RTI',
+            ],
+            [
+                'id' => 18,
+                'name' => 'RTI.list',
+                'group' => 'RTI',
+            ],
+            [
+                'id' => 19,
+                'name' => 'RTI.edit',
+                'group' => 'RTI',
+            ],
+            [
+                'id' => 20,
+                'name' => 'RTI.firstAppealList',
+                'group' => 'RTI',
+            ],
+            [
+                'id' => 21,
+                'name' => 'RTI.firstAppeal',
+                'group' => 'RTI',
+            ],
+            [
+                'id' => 22,
+                'name' => 'RTI.transferDetails',
+                'group' => 'RTI',
+            ],
+            [
+                'id' => 23,
+                'name' => 'RTI.approval',
+                'group' => 'RTI',
+            ],
+            [
+                'id' => 24,
+                'name' => 'RTI.note',
+                'group' => 'RTI',
+            ],
+            [
+                'id' => 25,
+                'name' => 'RTI.delete',
+                'group' => 'RTI',
+            ],
+            [
+                'id' => 26,
+                'name' => 'Masters.all',
+                'group' => 'Masters',
+            ],
         ];
 
         foreach ($permissions as $permission)

@@ -54,6 +54,13 @@ class RTIController extends Controller
         {
             DB::beginTransaction();
             $input = $request->validated();
+
+            $currentYear = date('Y');
+            $lastDispatch = Rti::whereYear('created_at', $currentYear)
+                           ->orderBy('dispatch_no', 'desc')
+                           ->first();
+            $input['dispatch_no'] = $lastDispatch ? $lastDispatch->dispatch_no + 1 : 1;
+
             Rti::create($input);
             DB::commit();
 
@@ -205,4 +212,107 @@ class RTIController extends Controller
         $lists = SecondAppeal::latest()->get();
         return view('RTI.second_appeal_list')->with(['lists' => $lists]);
     }
+
+    public function approve_rti(Request $request)
+    {
+        try
+        {
+            DB::beginTransaction();
+            $rti_id = $request->input('rti_id');
+            $remark = $request->input('remark');
+
+            DB::table('rtis')->where('id', $rti_id)->update([
+                'approval_status' => 'Approved',
+                'approval_remark' => $remark,
+                'approval_by' => auth()->user()->id,
+                'approval_at' => now()
+            ]);
+            
+            DB::commit();
+
+            return response()->json(['success'=> 'RTI Approved Successfully!']);
+        }
+        catch(\Exception $e)
+        {
+            return $this->respondWithAjax($e, 'Approving', 'RTI');
+        }
+    }
+
+    public function transfer_rti(Request $request)
+    {
+        try
+        {
+            DB::beginTransaction();
+            $rti_id = $request->input('rti_id');
+            $remark = $request->input('remark');
+            $department = $request->input('department');
+
+            $rti_details = Rti::findOrFail($rti_id);
+
+            DB::table('rti_track_details')->insert([
+                'rti_id' => $rti_id,
+                'old_department_id' => $rti_details->concerned_department,
+                'new_department_id' => $department,
+                'transfer_remark' => $remark,
+                'transfer_by' => auth()->user()->id,
+                'transfer_at' => now()
+            ]);
+
+            DB::table('rtis')->where('id', $rti_id)->update([
+                'concerned_department' => $department,
+            ]);
+            
+            DB::commit();
+
+            return response()->json(['success'=> 'RTI Transfer Successfully!']);
+        }
+        catch(\Exception $e)
+        {
+            return $this->respondWithAjax($e, 'transfering', 'RTI');
+        }
+    }
+
+    public function store_note(Request $request)
+    {
+        try
+        {
+            DB::beginTransaction();
+            $rti_id = $request->input('rti_id');
+            $note = $request->input('note');
+
+            DB::table('rtis')->where('id', $rti_id)->update([
+                'note' => $note,
+                'note_added_by' => auth()->user()->id,
+                'note_added_at' => now()
+            ]);
+            
+            DB::commit();
+
+            return response()->json(['success'=> 'Note Added Successfully!']);
+        }
+        catch(\Exception $e)
+        {
+            return $this->respondWithAjax($e, 'adding', 'Note');
+        }
+    }
+
+    public function view_transfer_Details($rtiId)
+    {
+        $trackingDetails = DB::table('rti_track_details as rtd')
+        ->leftJoin('departments as old_dept', 'rtd.old_department_id', '=', 'old_dept.id')
+        ->leftJoin('departments as new_dept', 'rtd.new_department_id', '=', 'new_dept.id')
+        ->where('rtd.rti_id', $rtiId)
+        ->select(
+            'rtd.*',
+            'old_dept.department_name as old_department_name',
+            'new_dept.department_name as new_department_name',
+            'rtd.transfer_remark'
+        )
+        ->get();
+
+        return response()->json([
+            'trackingDetails' => $trackingDetails,
+        ]);
+    }
+
 }

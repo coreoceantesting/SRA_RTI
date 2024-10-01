@@ -58,6 +58,15 @@ Route::middleware(['auth', 'PreventBackHistory', 'firewall.all'])->group(functio
     Route::get('first-appeal', [App\Http\Controllers\Admin\RTI\RTIController::class, 'first_appeal_list'])->name('first_appeal_list');
     Route::get('second-appeal', [App\Http\Controllers\Admin\RTI\RTIController::class, 'second_appeal_list'])->name('second_appeal_list');
 
+    // rti approve
+    Route::post('/rti/approve', [App\Http\Controllers\Admin\RTI\RTIController::class, 'approve_rti'])->name('rti.approve');
+    Route::post('/rti/transfer', [App\Http\Controllers\Admin\RTI\RTIController::class, 'transfer_rti'])->name('rti.transfer');
+    Route::post('/rti/store/note', [App\Http\Controllers\Admin\RTI\RTIController::class, 'store_note'])->name('store.note');
+
+    Route::get('/view-transfer-details/{rtiId}', [App\Http\Controllers\Admin\RTI\RTIController::class, 'view_transfer_Details'])->name('view_transfer_Details');
+
+
+
 
 
 

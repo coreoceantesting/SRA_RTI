@@ -56,7 +56,7 @@
 
                                             @can(['RTI.approval'])
                                                 @if ($rti->approval_status == "Pending")                           
-                                                    <button class="btn btn-success btn-sm approve-element px-2 py-1" title="Approve RTI" data-id="{{ $rti->id }}">Approve</button>
+                                                    <button class="btn btn-success btn-sm approve-element px-2 py-1" title="Approve RTI" data-id="{{ $rti->id }}">Accept</button>
                                                     <button class="btn btn-info btn-sm transfer-element px-2 py-1" title="Transfer RTI" data-id="{{ $rti->id }}">Transfer</button>
                                                 @endif
                                             @endcan

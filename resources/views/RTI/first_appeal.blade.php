@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="concerned_department">Concerned Deartment <span class="text-danger">*</span></label>
-                                    <select class="form-control" name="concerned_department" id="concerned_department" disabled>
+                                    <select class="form-control" name="concerned_department" id="concerned_department" readonly>
                                         <option value="">Select Concerned Deartment</option>
                                         @foreach ($departments as $list)
                                             <option value="{{ $list->id }}" @if($list->id == $rtis->concerned_department) selected @endif>{{ $list->department_name }}</option>
@@ -117,4 +117,17 @@
     });
 </script>
 
+<script>
+    $(document).ready(function() {
+        // Store the initial value
+        var initialValue = $('#concerned_department').val();
+
+        $('#concerned_department').on('change', function() {
+            if ($(this).val() !== initialValue) {
+                $(this).val(initialValue); // Reset to the initial value
+                alert('You cannot change this selection.');
+            }
+        });
+    });
+</script>
 

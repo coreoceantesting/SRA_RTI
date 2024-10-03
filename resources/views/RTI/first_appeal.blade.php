@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="received_date">Received Date <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="received_date" name="received_date" type="date" value="{{ $rtis->received_date }}">
+                                    <input class="form-control" id="received_date" name="received_date" type="date" value="{{ $rtis->received_date }}" max="<?php echo $today; ?>">
                                     <span class="text-danger is-invalid received_date_err"></span>
                                 </div>
                                 <div class="col-md-4">

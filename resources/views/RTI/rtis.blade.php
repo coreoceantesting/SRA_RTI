@@ -41,7 +41,7 @@
                                         {{-- <td>{{ $rti->note ?? 'NA'}}</td> --}}
                                         <td>
                                             @can(['RTI.firstAppeal'])    
-                                                @if ($rti->status == "Pending")
+                                                @if ($rti->status == "Pending" && $rti->approval_status == "Approved")
                                                     <a href="{{ route('first_appeal', $rti->id) }}" class="btn btn-sm btn-primary px-2 py-1" title="First Appeal">1st Appeal</a>              
                                                 @endif
                                             @endcan

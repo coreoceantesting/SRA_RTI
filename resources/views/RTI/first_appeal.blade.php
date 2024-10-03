@@ -62,7 +62,8 @@
                         </div>
                         <div class="card-footer">
                             <button class="btn btn-primary" id="editSubmit">Submit</button>
-                            <button type="reset" class="btn btn-warning">Reset</button>
+                            {{-- <button type="reset" class="btn btn-warning">Reset</button> --}}
+                            <a href="{{ route('rti.index') }}" class="btn btn-warning">Back</a>
                         </div>
                     </div>
                 </form>

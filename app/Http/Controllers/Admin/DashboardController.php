@@ -12,9 +12,19 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $rtiCounts = Rti::count();
-        $appealCount = FirstAppeal::count();
-        return view('admin.dashboard')->with(['rtiCounts' => $rtiCounts, 'appealCount' => $appealCount]);
+        if(auth()->user()->roles->pluck('name')[0] === "Department")
+        {
+            $rtiCounts = Rti::where('concerned_department', auth()->user()->department)->count();
+            $appealCount = FirstAppeal::where('concerned_department', auth()->user()->department)->count();
+            $approveRtiCount = Rti::where('concerned_department', auth()->user()->department)->where('approval_status', 'Approved')->count();
+            $rtilists = Rti::where('concerned_department', auth()->user()->department)->latest()->get()->take(5);
+        }else{
+            $rtiCounts = Rti::count();
+            $appealCount = FirstAppeal::count();
+            $approveRtiCount = Rti::where('approval_status', 'Approved')->count();
+            $rtilists = Rti::latest()->get()->take(5);
+        }
+        return view('admin.dashboard')->with(['rtiCounts' => $rtiCounts, 'appealCount' => $appealCount, 'approveRtiCount' => $approveRtiCount, 'rtilists' => $rtilists]);
     }
 
     public function changeThemeMode()

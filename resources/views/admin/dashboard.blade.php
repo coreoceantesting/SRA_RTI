@@ -4,7 +4,7 @@
     {{-- <x-slot name="subheading">Test</x-slot> --}}
 
     <div class="row">
-        <div class="col-xxl-5">
+        <div class="col-12">
             <div class="d-flex flex-column h-100">
                 <div class="row h-100">
                     <div class="col-12 d-none">
@@ -54,8 +54,8 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="card card-animate" style="background-color: bisque;">
+                    <div class="col-md-4">
+                        <div class="card card-animate" style="background-color: aqua;">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
                                     <div>
@@ -74,7 +74,7 @@
                                         </p>
                                     </div>
                                     <div>
-                                        <div class="avatar-sm flex-shrink-0">
+                                        <div class="avatar-sm flex-shrink-0 d-none">
                                             <span class="avatar-title bg-info-subtle rounded-circle fs-2">
                                                 <i data-feather="users" class="text-info"></i>
                                             </span>
@@ -88,8 +88,8 @@
                     </div>
                     <!-- end col-->
 
-                    <div class="col-md-6">
-                        <div class="card card-animate" style="background-color: burlywood;">
+                    <div class="col-md-4">
+                        <div class="card card-animate" style="background-color: aquamarine;">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
                                     <div>
@@ -109,7 +109,7 @@
                                         </p>
                                     </div>
                                     <div>
-                                        <div class="avatar-sm flex-shrink-0">
+                                        <div class="avatar-sm flex-shrink-0 d-none">
                                             <span class="avatar-title bg-info-subtle rounded-circle fs-2">
                                                 <i data-feather="activity" class="text-info"></i>
                                             </span>
@@ -122,35 +122,31 @@
                         <!-- end card-->
                     </div>
                     <!-- end col-->
-                </div>
 
-                <div class="row d-none">
-                    <div class="col-md-6">
-                        <div class="card card-animate">
+                    <div class="col-md-4">
+                        <div class="card card-animate" style="background-color: rgb(212, 237, 162);">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <p class="fw-medium text-muted mb-0">
-                                            Avg. Visit
-                                            Duration
-                                        </p>
+                                        <h3 class="fw-medium mb-0">
+                                            Total Approve RTI
+                                        </h3>
                                         <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value" data-target="3">0</span>m
-                                            <span class="counter-value" data-target="40">0</span>sec
+                                            <span class="counter-value" data-target="{{ $approveRtiCount }}">{{ $approveRtiCount }}</span>
                                         </h2>
-                                        <p class="mb-0 text-muted">
+                                        <p class="mb-0 d-none">
                                             <span class="badge bg-light text-danger mb-0">
                                                 <i class="ri-arrow-down-line align-middle"></i>
-                                                0.24 %
+                                                3.96 %
                                             </span>
                                             vs. previous
                                             month
                                         </p>
                                     </div>
                                     <div>
-                                        <div class="avatar-sm flex-shrink-0">
+                                        <div class="avatar-sm flex-shrink-0 d-none">
                                             <span class="avatar-title bg-info-subtle rounded-circle fs-2">
-                                                <i data-feather="clock" class="text-info"></i>
+                                                <i data-feather="activity" class="text-info"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -162,41 +158,44 @@
                     </div>
                     <!-- end col-->
 
-                    <div class="col-md-6">
-                        <div class="card card-animate">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <p class="fw-medium text-muted mb-0">
-                                            Bounce Rate
-                                        </p>
-                                        <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value" data-target="33.48">0</span>%
-                                        </h2>
-                                        <p class="mb-0 text-muted">
-                                            <span class="badge bg-light text-success mb-0">
-                                                <i class="ri-arrow-up-line align-middle"></i>
-                                                7.05 %
-                                            </span>
-                                            vs. previous
-                                            month
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <div class="avatar-sm flex-shrink-0">
-                                            <span class="avatar-title bg-info-subtle rounded-circle fs-2">
-                                                <i data-feather="external-link" class="text-info"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- end card body -->
-                        </div>
-                        <!-- end card-->
-                    </div>
-                    <!-- end col-->
                 </div>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card border-primary p-2">
+                            <div class="card-header bg-primary mt-3">
+                                <h4 style="color: white">Latest RTI</h4>
+                            </div>
+                            <div class="card-body mt-3">
+                                @php
+                                    $serialNumber = 1;
+                                @endphp
+                                <table id="buttons-datatables" class="table table-bordered nowrap align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Sr.No</th>
+                                            <th>Application Name</th>
+                                            <th>Mobile No</th>
+                                            <th>Received Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($rtilists as $list)
+                                            <tr>
+                                                <td>{{ $serialNumber++ }}</td>
+                                                <td>{{ $list->applicant_name }}</td>
+                                                <td>{{ $list->mobile_no }}</td>
+                                                <td>{{ $list->received_date }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- row close --}}
+
             </div>
         </div>
 

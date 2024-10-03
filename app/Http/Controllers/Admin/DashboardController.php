@@ -17,12 +17,12 @@ class DashboardController extends Controller
             $rtiCounts = Rti::where('concerned_department', auth()->user()->department)->count();
             $appealCount = FirstAppeal::where('concerned_department', auth()->user()->department)->count();
             $approveRtiCount = Rti::where('concerned_department', auth()->user()->department)->where('approval_status', 'Approved')->count();
-            $rtilists = Rti::where('concerned_department', auth()->user()->department)->latest()->get()->take(5);
+            $rtilists = Rti::where('concerned_department', auth()->user()->department)->latest()->limit(5)->get();
         }else{
             $rtiCounts = Rti::count();
             $appealCount = FirstAppeal::count();
             $approveRtiCount = Rti::where('approval_status', 'Approved')->count();
-            $rtilists = Rti::latest()->get()->take(5);
+            $rtilists = Rti::latest()->limit(5)->get();
         }
         return view('admin.dashboard')->with(['rtiCounts' => $rtiCounts, 'appealCount' => $appealCount, 'approveRtiCount' => $approveRtiCount, 'rtilists' => $rtilists]);
     }

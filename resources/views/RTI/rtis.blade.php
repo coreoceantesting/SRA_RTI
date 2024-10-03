@@ -20,7 +20,7 @@
                                     <th>Subject</th>
                                     <th>Concerned Department</th>
                                     <th>Name Of Concerned Officer</th>
-                                    <th>Note</th>
+                                    {{-- <th>Note</th> --}}
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -38,7 +38,7 @@
                                         </td>
                                         <td>{{ $rti->department_name }}</td>
                                         <td>{{ $rti->name_of_concerned_officer ?? 'NA'}}</td>
-                                        <td>{{ $rti->note ?? 'NA'}}</td>
+                                        {{-- <td>{{ $rti->note ?? 'NA'}}</td> --}}
                                         <td>
                                             @can(['RTI.firstAppeal'])    
                                                 @if ($rti->status == "Pending")

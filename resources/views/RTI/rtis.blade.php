@@ -71,7 +71,7 @@
                                             @endcan
 
                                             @can(['RTI.edit'])
-                                                @if ($rti->status == "Pending" || $rti->approval_status == "Pending")
+                                                @if ($rti->status == "Pending" && $rti->approval_status == "Pending")
                                                 <a href="{{ route('rti.edit', $rti->id) }}" class="edit-element btn btn-primary px-2 py-1" title="Edit RTI" data-id="{{ $rti->id }}"><i data-feather="edit"></i></a>
                                                 @endif
                                             @endcan

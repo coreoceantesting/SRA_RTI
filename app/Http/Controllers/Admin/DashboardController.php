@@ -4,13 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cookie;
+use App\Models\Rti;
+use App\Models\FirstAppeal;
 
 class DashboardController extends Controller
 {
 
     public function index()
     {
-        return view('admin.dashboard');
+        $rtiCounts = Rti::count();
+        $appealCount = FirstAppeal::count();
+        return view('admin.dashboard')->with(['rtiCounts' => $rtiCounts, 'appealCount' => $appealCount]);
     }
 
     public function changeThemeMode()

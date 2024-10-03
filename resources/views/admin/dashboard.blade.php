@@ -55,17 +55,17 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="card card-animate">
+                        <div class="card card-animate" style="background-color: bisque;">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <p class="fw-medium text-muted mb-0">
-                                            Users
-                                        </p>
+                                        <h3 class="fw-medium mb-0">
+                                            Total RTI
+                                        </h3>
                                         <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value" data-target="28.05">0</span>k
+                                            <span class="counter-value" data-target="{{ $rtiCounts }}">{{ $rtiCounts }}</span>
                                         </h2>
-                                        <p class="mb-0 text-muted">
+                                        <p class="mb-0 d-none">
                                             <span class="badge bg-light text-success mb-0"><i class="ri-arrow-up-line align-middle"></i>
                                                 16.24 %
                                             </span>
@@ -89,17 +89,17 @@
                     <!-- end col-->
 
                     <div class="col-md-6">
-                        <div class="card card-animate">
+                        <div class="card card-animate" style="background-color: burlywood;">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <p class="fw-medium text-muted mb-0">
-                                            Sessions
-                                        </p>
+                                        <h3 class="fw-medium mb-0">
+                                            Total Appeal
+                                        </h3>
                                         <h2 class="mt-4 ff-secondary fw-semibold">
-                                            <span class="counter-value" data-target="97.66">0</span>k
+                                            <span class="counter-value" data-target="{{ $appealCount }}">{{ $appealCount }}</span>
                                         </h2>
-                                        <p class="mb-0 text-muted">
+                                        <p class="mb-0 d-none">
                                             <span class="badge bg-light text-danger mb-0">
                                                 <i class="ri-arrow-down-line align-middle"></i>
                                                 3.96 %
@@ -124,7 +124,7 @@
                     <!-- end col-->
                 </div>
 
-                <div class="row">
+                <div class="row d-none">
                     <div class="col-md-6">
                         <div class="card card-animate">
                             <div class="card-body">

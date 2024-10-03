@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="concerned_department">Concerned Deartment <span class="text-danger">*</span></label>
-                                    <select class="form-control" name="concerned_department" id="concerned_department" readonly>
+                                    <select class="form-control" name="concerned_department" id="concerned_department" disabled>
                                         <option value="">Select Concerned Deartment</option>
                                         @foreach ($departments as $list)
                                             <option value="{{ $list->id }}" @if($list->id == $rtis->concerned_department) selected @endif>{{ $list->department_name }}</option>

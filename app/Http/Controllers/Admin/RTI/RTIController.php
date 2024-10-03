@@ -144,6 +144,14 @@ class RTIController extends Controller
             DB::beginTransaction();
             $input = $request->validated();
             $input['rti_id'] = $request->input('edit_model_id');
+
+            $currentYear = date('Y');
+            $lastDispatch = FirstAppeal::whereYear('created_at', $currentYear)
+                           ->orderBy('dispatch_no', 'desc')
+                           ->first();
+
+            $input['dispatch_no'] = $lastDispatch ? $lastDispatch->dispatch_no + 1 : 1;
+            
             FirstAppeal::create($input);
             DB::table('rtis')->where('id', $request->input('edit_model_id'))->update([
                 'status' => "First Appeal"

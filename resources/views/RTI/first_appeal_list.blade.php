@@ -25,7 +25,7 @@
                                 @foreach ($lists as $index => $list)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ $list->id }}</td>
+                                        <td>{{ $list->dispatch_no }}</td>
                                         <td>{{ $list->applicant_name }}</td>
                                         <td>{{ $list->mobile_no }}</td>
                                         <td>{{ $list->received_date }}</td>

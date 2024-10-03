@@ -113,3 +113,21 @@
 
     });
 </script>
+
+<script>
+    document.getElementById('mobile_no').addEventListener('input', function (e) {
+        let mobileNumber = e.target.value;
+
+        // Validate if input is 10 digits
+        if (mobileNumber.length > 10) {
+            this.value = mobileNumber.slice(0, 10); // Limit to 10 digits
+        }
+
+        // Optionally, you can also add custom error messages
+        if (mobileNumber.length < 10) {
+            document.querySelector('.mobile_no_err').innerText = 'Mobile number must be 10 digits.';
+        } else {
+            document.querySelector('.mobile_no_err').innerText = '';
+        }
+    });
+</script>

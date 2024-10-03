@@ -315,4 +315,13 @@ class RTIController extends Controller
         ]);
     }
 
+    public function view_note($rtiId)
+    {
+        $note = DB::table('rtis')->where('id', $rtiId)->first(['note']);
+
+        return response()->json([
+            'note' => $note,
+        ]);
+    }
+
 }

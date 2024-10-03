@@ -48,12 +48,7 @@
                                             {{-- @if ($rti->status == "First Appeal")
                                                 <a href="{{ route('second_appeal', $rti->id) }}" class="btn btn-sm btn-info px-2 py-1" title="Second Appeal">2nd Appeal</a>
                                             @endif --}}
-                                            @can(['RTI.edit'])
-                                                @if ($rti->status == "Pending")
-                                                <a href="{{ route('rti.edit', $rti->id) }}" class="edit-element btn text-secondary px-2 py-1" title="Edit RTI" data-id="{{ $rti->id }}"><i data-feather="edit"></i></a>
-                                                @endif
-                                            @endcan
-
+                                            
                                             @can(['RTI.approval'])
                                                 @if ($rti->approval_status == "Pending")                           
                                                     <button class="btn btn-success btn-sm approve-element px-2 py-1" title="Approve RTI" data-id="{{ $rti->id }}">Accept</button>
@@ -67,8 +62,18 @@
                                                 @endif
                                             @endcan
 
+                                            @if ($rti->approval_status == "Approved" && !empty($rti->note))
+                                                <button class="btn btn-secondary btn-sm view-note px-2 py-1" title="View Note" data-id="{{ $rti->id }}">View Note</button>
+                                            @endif
+
                                             @can(['RTI.transferDetails'])
                                                 <button class="btn btn-dark btn-sm transfer-details px-2 py-1" title="Transfer RTI Details" data-id="{{ $rti->id }}">Transfer Details</button>    
+                                            @endcan
+
+                                            @can(['RTI.edit'])
+                                                @if ($rti->status == "Pending" || $rti->approval_status == "Pending")
+                                                <a href="{{ route('rti.edit', $rti->id) }}" class="edit-element btn btn-primary px-2 py-1" title="Edit RTI" data-id="{{ $rti->id }}"><i data-feather="edit"></i></a>
+                                                @endif
                                             @endcan
 
                                             @can(['RTI.delete'])    
@@ -142,7 +147,7 @@
                     </div>
                 </div>
 
-                <!-- Transfer Modal -->
+                <!-- Note Modal -->
                 <div class="modal fade" id="noteModal" tabindex="-1" aria-labelledby="noteModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -162,6 +167,24 @@
                             <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="button" id="storeNote" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- View Note Modal -->
+                <div class="modal fade" id="viewNoteModal" tabindex="-1" aria-labelledby="viewNoteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="viewNoteModalLabel">Note</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h4 id="note-view"></h4>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -431,4 +454,31 @@
         });
     });
 </script>
+
+{{-- view note details --}}
+<script>
+    $(document).ready(function() {
+
+        $('.view-note').on('click', function() {
+            var rtiId = $(this).data('id');
+
+            $.ajax({
+                url: '/view-note/' + rtiId,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    console.log(data);
+                    $('#note-view').text(data.note.note);
+                    $('#viewNoteModal').modal('show');
+
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>
+
+
 

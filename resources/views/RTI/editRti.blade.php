@@ -34,7 +34,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label class="col-form-label" for="date">Date<span class="text-danger">*</span></label>
-                                <input class="form-control" id="date" name="date" type="date" value="{{ $rti->date }}">
+                                <input class="form-control" id="date" name="date" type="date" value="{{ $rti->date }}" readonly>
                                 <span class="text-danger is-invalid date_err"></span>
                             </div>
                             <div class="col-md-4">
@@ -114,5 +114,23 @@
             });
 
         });
+    });
+</script>
+
+<script>
+    document.getElementById('mobile_no').addEventListener('input', function (e) {
+        let mobileNumber = e.target.value;
+
+        // Validate if input is 10 digits
+        if (mobileNumber.length > 10) {
+            this.value = mobileNumber.slice(0, 10); // Limit to 10 digits
+        }
+
+        // Optionally, you can also add custom error messages
+        if (mobileNumber.length < 10) {
+            document.querySelector('.mobile_no_err').innerText = 'Mobile number must be 10 digits.';
+        } else {
+            document.querySelector('.mobile_no_err').innerText = '';
+        }
     });
 </script>

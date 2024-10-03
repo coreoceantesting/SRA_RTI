@@ -65,6 +65,8 @@ Route::middleware(['auth', 'PreventBackHistory', 'firewall.all'])->group(functio
 
     Route::get('/view-transfer-details/{rtiId}', [App\Http\Controllers\Admin\RTI\RTIController::class, 'view_transfer_Details'])->name('view_transfer_Details');
 
+    Route::get('/view-note/{rtiId}', [App\Http\Controllers\Admin\RTI\RTIController::class, 'view_note'])->name('view_note');
+
 
 
 
